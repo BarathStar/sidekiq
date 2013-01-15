@@ -18,7 +18,7 @@ module Sidekiq
     private
 
     def send_to_airbrake(msg, ex)
-      ::Airbrake.notify_or_ignore(ex, :parameters => msg)
+      ::Airbrake.notify_or_ignore(ex, :error_message => msg, :rack_env => ENV["RACK_ENV"])
     end
 
     def send_to_honeybadger(msg, ex)
